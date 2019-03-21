@@ -8,10 +8,14 @@ public class TestProxy {
         UserDao userDAO = new UserDaoMysqlImpl();
         LogHandler li = new LogHandler(userDAO);  //创建一个Handerler对象
 
-        userDAO.addUser(1);
 
+       // userDAO.addUser(1);-
+        System.out.println("userDAOProxy.getClass() = " + userDAO.getClass());
 
         UserDao userDAOProxy = (UserDao) Proxy.newProxyInstance(userDAO.getClass().getClassLoader(), userDAO.getClass().getInterfaces(), li);
         userDAOProxy.addUser(1);
+
+        System.out.println("userDAOProxy.getClass() = " + userDAOProxy.getClass());
+        System.out.println("userDAOProxy.getClass() = " + userDAOProxy.toString());
     }
 }
